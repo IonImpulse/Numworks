@@ -1,4 +1,4 @@
-from taxEngine import *
+from taxengine import *
 print("a * (x - b) + c")
 print("Multiplier? *a*")
 taxPer = [float(x) for x in input(":").split(",")]
