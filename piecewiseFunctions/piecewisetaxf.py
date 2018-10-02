@@ -37,9 +37,6 @@ if choice == "2" :
     print("Bracket? *b*")
     bracket = [float(x) for x in input(":").split(",")]
     taxRate = taxRateFinder(taxPer,bracket)
-    print(taxRate)
-    print(bracket)
-    print(taxPer)
     print(taxPer[1],"x   ", "0 < x <",bracket[1])
     bracket.append("Infinity")
     for number in range(len(taxPer)-2) :
