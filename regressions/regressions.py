@@ -24,18 +24,28 @@ b = yAvgLow - (xAvgLow * slope)
 print("Linear:")
 print("y =",slope,"x +",b)
 print("============")
-yQuadList = [x+(0-yList[0]) for x in yList]
-xQuadList = [x+(0-xList[0]) for x in xList]
-yQuadList1 = []
-xQuadList1 = []
-linTable(yQuadList,yQuadList1)
-linTable(xQuadList,xQuadList1)
-if len(yQuadList)% 2 == 0 :
-    tMiddle = int(len(yQuadList) / 2)
-    yMiddle = float((yQuadList[tMiddle]) + .5)
+if len(yList)% 2 == 0 :
+    tMiddle = int(len(yList) / 2)
+    yMiddle = float((yList[tMiddle]) + .5)
 else :
-    tMiddle = int((len(yQuadList) + 1) / 2)
-    yMiddle = float(yQuadList[tMiddle])
-xMiddle = math.sqrt(xQuadList1[1][len(xQuadList1[1])-1])
-print(xQuadList1)
-print(xMiddle)
+    tMiddle = int(((len(yList) + 1) / 2)-1)
+    yMiddle = float(yList[tMiddle])
+if len(xList)% 2 == 0 :
+    tMiddle = int(len(xList) / 2)
+    xMiddle = float((xList[tMiddle]) + .5)
+else :
+    tMiddle = int(((len(xList) + 1) / 2)-1)
+    xMiddle = float(xList[tMiddle])
+equ1 = [yAvgLow,(xAvgLow**2),xAvgLow]
+equ2 = [-yMiddle,-(xMiddle**2),-xMiddle]
+equ3 = [yAvgHigh,(xAvgHigh**2),xAvgHigh]
+equ1 = [sum(x) for x in zip(equ1, equ2)]
+equ3 = [sum(x) for x in zip(equ2, equ3)]
+equ3 = [i*((-equ1[2])/equ3[2]) for i in equ3]
+equ2 = equ1
+equ1 = [sum(x) for x in zip(equ1, equ3)]
+a = equ1[1]/equ1[0]
+b = (equ2[0]-(equ2[1] * a))/equ2[2]
+c = yAvgLow-((a*(xAvgLow**2))+(b*xAvgLow))
+print("Quadratic:")
+print("y =",a,"x^2 +",b,"x +",c)
